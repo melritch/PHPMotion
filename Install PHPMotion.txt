@@ -1,0 +1,110 @@
+
+apt-get update
+
+apt-get install -y apache2 mariadb-server
+
+apt-get install -y build-essential libxml2-dev
+
+wget https://github.com/scorpio7x/php5.3/raw/master/php-5.3.29.tar.bz2
+
+tar -xvf php-5.3.29.tar.bz2
+
+cd php-5.3.29
+
+./configure
+
+make
+
+make test
+
+sudo make install
+
+#apt-get install php5-gd php5-mysql php5-curl php5-xsl php5-cli php-pear unzip
+
+service apache2 restart
+
+wget https://github.com/scorpio7x/php5.3/raw/master/info.php
+
+sudo mv -fv info.php /var/www/html
+
+#apt-get install lame gcc make
+
+cd ..
+
+wget https://github.com/scorpio7x/PHPMotion/raw/master/libogg-1.3.0.tar.gzip
+
+tar -xvf libogg-1.3.0.tar.gzip
+
+cd libogg-1.3.0
+
+./configure
+
+make
+
+make install
+
+cd ..
+
+wget https://github.com/scorpio7x/PHPMotion/raw/master/libvorbis-1.3.3.tar.gzip
+
+tar -xvf libvorbis-1.3.3.tar.gzip
+
+cd libvorbis-1.3.3
+
+./configure
+
+make
+
+make install
+
+cd ..
+
+apt-get install -y mencoder
+
+apt-add-repository ppa:mc3man/trusty-media
+
+apt-get update
+
+apt-get install -y ffmpeg gstreamer0.10-ffmpeg
+
+apt-get install -y ruby
+
+gem install flvtool2
+
+wget https://github.com/scorpio7x/PHPMotion/raw/master/php.ini
+
+sudo mv -fv php.ini /etc/php5/apache2
+
+service apache2 restart
+	
+wget https://github.com/scorpio7x/PHPMotion/raw/master/phpmotion.zip
+	
+unzip phpmotion.zip
+
+mv -fv phpmotion /var/www/
+
+cd /var/www/phpmotion/
+
+chmod -R 775 ./cgi-bin/
+
+wget https://github.com/scorpio7x/PHPMotion/raw/master/phpmotion.conf
+
+sudo mv -fv phpmotion.conf /etc/apache2/sites-available/phpmotion.conf
+
+ln -s /etc/apache2/sites-available/phpmotion.conf /etc/apache2/sites-enabled/phpmotion.conf
+
+a2enmod rewrite
+
+service apache2 restart
+
+chown www-data:www-data -R /var/www/phpmotion/
+
+
+
+	
+
+	CREATE DATABASE phpmotiondb;
+ 	CREATE USER 'phpmotionuser'@'localhost' IDENTIFIED BY 'Pa$$worD';
+ 	GRANT ALL PRIVILEGES ON phpmotiondb.* TO 'phpmotionuser'@'localhost';
+ 	FLUSH PRIVILEGES;
+ 	EXIT;

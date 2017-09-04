@@ -1,0 +1,63 @@
+#sed -i -e 's/\r$//' your_script.sh
+
+apt-get update
+
+apt-get install -y apache2 php5 mysql-server
+
+apt-get install -y ffmpeg flvtool2 mencoder lame libogg0 php5-ffmpeg php5-curl curl libapache2-mod-php5 php5-mysql lynx-cur libapache2-mod-speedycgi
+
+wget https://github.com/scorpio7x/PHPMotion/raw/master/phpmotion.zip
+	
+unzip phpmotion.zip
+
+mv -fv phpmotion /var/www/
+
+cd /var/www/phpmotion/
+
+chmod -Rf 744 *
+chmod -Rf 755 cgi-bin/
+#chmod -R 777 addons
+#chmod -R 777 uploads
+#chmod -R 777 classes
+#chmod -R 777 logs
+chmod -R 755 setup
+#chmod -R 777 pictures
+#chmod -R 777 temp
+chmod -R 755 siteadmin
+
+cd ..
+
+wget https://github.com/scorpio7x/PHPMotion/raw/master/phpmotion.conf
+
+sudo mv -fv phpmotion.conf /etc/apache2/sites-available/phpmotion.conf
+
+ln -s /etc/apache2/sites-available/phpmotion.conf /etc/apache2/sites-enabled/phpmotion.conf
+
+a2enmod rewrite
+
+wget https://github.com/scorpio7x/PHPMotion/raw/master/ixed.5.3
+
+sudo mv -fv ixed.5.3 /usr/lib/php5/20090626+lfs/
+
+wget https://github.com/scorpio7x/PHPMotion/raw/master/ixed.5.3.ini
+
+sudo mv -fv ixed.5.3.ini /etc/php5/conf.d/ixed.5.3.ini
+
+chown www-data:www-data -Rf /var/www/phpmotion/
+
+wget https://github.com/scorpio7x/PHPMotion/raw/master/.htaccess
+
+sudo mv -fv .htaccess /var/www/phpmotion/
+
+service apache2 restart
+
+
+
+
+
+
+
+
+
+
+
