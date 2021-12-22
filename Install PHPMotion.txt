@@ -77,7 +77,7 @@ sudo mv -fv php.ini /etc/php5/apache2
 
 service apache2 restart
 	
-wget https://github.com/scorpio7x/PHPMotion/raw/master/phpmotion.zip
+wget  https://github.com/scorpio7x/PHPMotion/raw/master/phpmotion.zip
 	
 unzip phpmotion.zip
 
@@ -108,3 +108,4 @@ chown www-data:www-data -R /var/www/phpmotion/
  	GRANT ALL PRIVILEGES ON phpmotiondb.* TO 'phpmotionuser'@'localhost';
  	FLUSH PRIVILEGES;
  	EXIT;
+	
